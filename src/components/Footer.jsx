@@ -8,7 +8,7 @@ export default function Footer() {
         <p className="footer__copy">© {year} Pact. All rights reserved.</p>
         <ul className="footer__links">
           <li><a href="#privacy">Privacy</a></li>
-          <li><a href="mailto:support@pactapp.io">Contact</a></li>
+          <li><a href="mailto:yawsnr33@gmail.com">Contact</a></li>
         </ul>
       </div>
     </footer>

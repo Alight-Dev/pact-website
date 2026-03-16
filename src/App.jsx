@@ -1,11 +1,11 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import HowItWorks from './components/HowItWorks'
-import Permissions from './components/Permissions'
-import ShieldTiers from './components/ShieldTiers'
-import Privacy from './components/Privacy'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import HowItWorks from "./components/HowItWorks";
+import Permissions from "./components/Permissions";
+import ShieldTiers from "./components/ShieldTiers";
+import Privacy from "./components/Privacy";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -14,12 +14,12 @@ export default function App() {
       <main>
         <Hero />
         <HowItWorks />
-        <Permissions />
+        {/* <Permissions /> */}
         <ShieldTiers />
-        <Privacy />
+        {/* <Privacy /> */}
         <Contact />
       </main>
       <Footer />
     </>
-  )
+  );
 }

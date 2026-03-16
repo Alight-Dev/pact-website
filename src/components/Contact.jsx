@@ -25,11 +25,11 @@ export default function Contact() {
           reach us directly. We respond to every message.
         </p>
         <a
-          href="mailto:support@pactapp.io"
+          href="mailto:yawsnr33@gmail.com"
           className="contact__link reveal reveal-delay-3"
         >
           <span className="contact__link-icon">✉️</span>
-          support@pactapp.io
+          yawsnr33@gmail.com
         </a>
       </div>
     </section>
