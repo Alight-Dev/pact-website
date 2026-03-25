@@ -1,25 +1,29 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import HowItWorks from "./components/HowItWorks";
-import Permissions from "./components/Permissions";
-import ShieldTiers from "./components/ShieldTiers";
-import Privacy from "./components/Privacy";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import Home from "./pages/Home";
+import TermsPage from "./pages/TermsPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) return;
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+
+  return null;
+}
 
 export default function App() {
   return (
     <>
-      <Navbar />
-      <main>
-        <Hero />
-        <HowItWorks />
-        {/* <Permissions /> */}
-        <ShieldTiers />
-        {/* <Privacy /> */}
-        <Contact />
-      </main>
-      <Footer />
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/privacy" element={<PrivacyPolicyPage />} />
+      </Routes>
     </>
   );
 }

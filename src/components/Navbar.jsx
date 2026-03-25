@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -12,21 +13,19 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="container navbar__inner">
-        <a href="#" className="navbar__logo">
+        <Link to="/" className="navbar__logo">
           <span className="navbar__logo-dot" />
           PACT
-        </a>
+        </Link>
         <ul className="navbar__links">
           <li>
-            <a href="#how-it-works">How It Works</a>
+            <Link to="/#how-it-works">How It Works</Link>
           </li>
-          {/* <li><a href="#permissions">Permissions</a></li> */}
           <li>
-            <a href="#shield">Shield</a>
+            <Link to="/#shield">Shield</Link>
           </li>
-          {/* <li><a href="#privacy">Privacy</a></li> */}
           <li>
-            <a href="#contact">Contact</a>
+            <Link to="/#contact">Contact</Link>
           </li>
         </ul>
       </div>
