@@ -11,6 +11,8 @@ export default function Footer() {
         <ul className="footer__links">
           <li><Link to="/terms">Terms</Link></li>
           <li><Link to="/privacy">Privacy</Link></li>
+          <li><Link to="/support">Support</Link></li>
+          <li><Link to="/marketing">Marketing</Link></li>
           <li><a href="mailto:yawsnr33@gmail.com">Contact</a></li>
         </ul>
       </div>
