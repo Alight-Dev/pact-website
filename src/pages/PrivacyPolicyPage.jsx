@@ -29,8 +29,9 @@ export default function PrivacyPolicyPage() {
         </li>
         <li>
           <strong>Proof media:</strong> when you submit verification (for
-          example, a live photo captured in-app), we process that media as
-          described below.
+          example, a live photo captured in-app), that uploaded media is stored
+          in Google Firebase (such as Firebase Storage) so it can be reviewed by
+          your team and managed according to this policy.
         </li>
         <li>
           <strong>Communications:</strong> if you email us (for example, for
@@ -94,9 +95,10 @@ export default function PrivacyPolicyPage() {
         </li>
         <li>
           <strong>Service providers:</strong> we use trusted vendors to host
-          data and run core infrastructure. Our app may use Google Firebase
-          (for example, authentication, storage, or database services) to
-          operate features such as secure uploads visible only to your team.
+          data and run core infrastructure. User-uploaded data (including proof
+          photos and related metadata) is stored in Google Firebase (including
+          services such as Firebase Storage and database services) to operate
+          the Service and make uploads available to authorized team members.
           Providers process information on our instructions and are contractually
           bound to appropriate protections where required.
         </li>
