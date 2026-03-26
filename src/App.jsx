@@ -5,6 +5,7 @@ import TermsPage from "./pages/TermsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import SupportPage from "./pages/SupportPage";
 import MarketingPage from "./pages/MarketingPage";
+import WaitlistPage from "./pages/WaitlistPage";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/support" element={<SupportPage />} />
         <Route path="/marketing" element={<MarketingPage />} />
+        <Route path="/waitlist" element={<WaitlistPage />} />
       </Routes>
     </>
   );
