@@ -264,15 +264,15 @@ export default function WaitlistPage() {
         </div>
         <div className="apps-grid">
           {[
-            { name: 'Instagram', desc: 'Infinite scroll',       bg: 'linear-gradient(135deg,#833ab4,#fd1d1d,#f77737)', icon: <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white" strokeWidth="1.8" fill="none"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="none" stroke="white" strokeWidth="1.8"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" strokeWidth="2" strokeLinecap="round"/></svg> },
-            { name: 'TikTok',    desc: 'Short-form rabbit hole', bg: '#010101',                                         icon: <svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg> },
-            { name: 'YouTube',   desc: 'Endless autoplay',       bg: '#ff0000',                                         icon: <svg viewBox="0 0 24 24" fill="white"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#ff0000"/></svg> },
-            { name: 'X / Twitter', desc: 'Doomscrolling',        bg: '#000',                                            icon: <svg viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.25 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> },
-            { name: 'Reddit',    desc: 'Forum rabbit hole',       bg: '#ff4500',                                         icon: <svg viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="10"/><path d="M20 12a2 2 0 00-3.37-1.46A9.78 9.78 0 0012.1 9.1a.39.39 0 00-.46.31l-.66 4.14a6.78 6.78 0 01-3.23-.79 2 2 0 10-2.13 3.35A3.81 3.81 0 006 16.5c0 2.21 2.69 4 6 4s6-1.79 6-4a3.81 3.81 0 00-.38-.75A2 2 0 0020 12zm-8 4.5c-1.14 0-2-.45-2-1s.86-1 2-1 2 .45 2 1-.86 1-2 1z" fill="#ff4500"/></svg> },
-            { name: 'Snapchat',  desc: "Streaks & stories",      bg: '#fffc00',                                         icon: <svg viewBox="0 0 24 24" fill="#000"><path d="M12.166.006C9.65.006 7.4.97 5.85 3.09c-1.007 1.38-1.49 3.13-1.49 5.26v.98c-.53.2-1.06.23-1.54.14-.96-.18-1.49.45-1.26 1.29.13.49.61.83 1.1.96.2.05.57.08 1.04.29.36.16.69.45.97.9.5.81 1.83 2.21 4.3 2.59.06.01.1.06.1.12-.01.07-.08.14-.17.2-.58.4-1.67.62-3.25.65-.54.01-.95.4-.94.93.01.47.3.85.73.97C6.3 18.56 7.4 19.1 8 19.95c.1.14.06.33-.08.42-.21.13-.43.26-.62.38-.71.45-1.04.84-1.04 1.2 0 .44.44.79 1.06.79.3 0 .61-.08.92-.23.6-.3 1.2-.46 1.78-.46.63 0 1.26.19 1.88.57.62.38 1.28.56 1.96.56.64 0 1.26-.17 1.85-.51.61-.36 1.2-.54 1.77-.54.59 0 1.18.16 1.74.47.31.16.63.24.93.24.62 0 1.06-.35 1.06-.79 0-.36-.33-.75-1.04-1.2-.19-.12-.41-.25-.62-.38-.14-.09-.18-.28-.08-.42.6-.85 1.7-1.39 2.62-1.62.43-.12.72-.5.73-.97.01-.53-.4-.92-.94-.93-1.58-.03-2.67-.25-3.25-.65-.09-.06-.16-.13-.17-.2 0-.06.04-.11.1-.12 2.47-.38 3.8-1.78 4.3-2.59.28-.45.61-.74.97-.9.47-.21.84-.24 1.04-.29.49-.13.97-.47 1.1-.96.23-.84-.3-1.47-1.26-1.29-.48.09-1.01.06-1.54-.14v-.98c0-2.13-.483-3.88-1.49-5.26C16.6.97 14.35.006 12.166.006z"/></svg> },
-          ].map(({ name, desc, bg, icon }, i) => (
+            { name: 'Instagram', desc: 'Infinite scroll',       bg: '#000', iconSrc: '/logos/instagram.svg', iconScale: 1 },
+            { name: 'TikTok',    desc: 'Short-form rabbit hole', bg: '#000', iconSrc: '/logos/tiktok.png', iconScale: 1.5 },
+            { name: 'Reddit',    desc: 'Forum rabbit hole',      bg: '#030303', iconSrc: '/logos/reddit.png', iconScale: 1 },
+            { name: 'Snapchat',  desc: "Streaks & stories",      bg: '#000', iconSrc: '/logos/snapchat.svg', iconScale: 1 },
+          ].map(({ name, desc, bg, iconSrc, iconScale }, i) => (
             <div key={name} className={`app-card rv rv-d${(i % 6) + 1}`}>
-              <div className="app-icon" style={{ background: bg }}>{icon}</div>
+              <div className="app-icon" style={{ background: bg, '--icon-scale': iconScale }}>
+                <img src={iconSrc} alt="" aria-hidden="true" />
+              </div>
               <div className="app-info">
                 <div className="app-name">{name}</div>
                 <div className="app-desc">{desc}</div>
@@ -328,7 +328,7 @@ export default function WaitlistPage() {
           <div className="step-card rv rv-d1">
             <p className="step-n">01 —</p>
             <div className="step-icon">
-              <img src="/logo-color.png" alt="Pact" className="step-icon-logo" />
+              <img src="/logo.png" alt="Pact" className="step-icon-logo" />
             </div>
             <h3 className="step-title">Forge a Pact</h3>
             <p className="step-desc">Your group picks daily goals together and agrees on which apps get locked. Everyone commits — the pact is sealed.</p>
@@ -447,9 +447,7 @@ export default function WaitlistPage() {
                 </div>
                 <div className="ph-card">
                   <div className="ph-card-img">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="rgba(165,180,252,0.4)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                    </svg>
+                    <img src="/images/proof-morning-run.jpg" alt="Morning run proof" className="ph-card-photo" />
                     <span className="ph-card-caption">Proof photo</span>
                   </div>
                   <div className="ph-card-meta">
@@ -495,7 +493,9 @@ export default function WaitlistPage() {
 
       {/* Bottom CTA */}
       <section className="cta-section wrap">
-        <img src="/logo-color.png" alt="Pact" className="cta-logo rv" />
+        <div className="cta-logo-shell rv" aria-hidden="true">
+          <img src="/logo.png" alt="Pact" className="cta-logo" />
+        </div>
         <h2 className="cta-hed rv rv-d1">Stop going it<br /><span>alone.</span></h2>
         <p className="cta-sub rv rv-d2">Get your crew together. Set the rules. Lock the apps. The people around you are the system.</p>
         <p className="cta-count rv rv-d3">Join <strong>900+</strong> people already signed up</p>
@@ -512,14 +512,11 @@ export default function WaitlistPage() {
             Pact
           </a>
           <div className="socials">
-            <a href="#" className="s-link" aria-label="X / Twitter">
-              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.25 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <a href="https://www.instagram.com/officialpactapp" className="s-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><defs><linearGradient id="ig-footer" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stopColor="#feda75"/><stop offset="5%" stopColor="#fa7e1e"/><stop offset="45%" stopColor="#d92e7f"/><stop offset="60%" stopColor="#9b36b7"/><stop offset="90%" stopColor="#515bd4"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="url(#ig-footer)" strokeWidth="1.5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="none" stroke="url(#ig-footer)" strokeWidth="1.5"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="url(#ig-footer)" strokeWidth="2" strokeLinecap="round"/></svg>
             </a>
-            <a href="#" className="s-link" aria-label="Instagram">
-              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </a>
-            <a href="#" className="s-link" aria-label="Discord">
-              <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            <a href="https://www.tiktok.com/@officialpactapp" className="s-link" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
             </a>
           </div>
           <p className="foot-copy">© 2026 Pact. All rights reserved.</p>

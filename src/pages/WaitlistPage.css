@@ -25,6 +25,7 @@
 @keyframes wl-shake  { 0%,100%{transform:translateX(0);} 20%{transform:translateX(-5px);} 40%{transform:translateX(5px);} 60%{transform:translateX(-3px);} 80%{transform:translateX(3px);} }
 @keyframes wl-spin   { to{transform:rotate(360deg);} }
 @keyframes wl-bob    { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+@keyframes wl-orbit-glow { 0%,100%{opacity:0.55;transform:scale(1);} 50%{opacity:0.9;transform:scale(1.08);} }
 @keyframes wl-marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
 @keyframes wl-rv-in  { from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:translateY(0);} }
 
@@ -247,7 +248,12 @@
   width: 40px; height: 40px; border-radius: 11px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
-.wl .app-icon svg { width: 22px; height: 22px; }
+.wl .app-icon img {
+  width: calc(22px * var(--icon-scale, 1));
+  height: calc(22px * var(--icon-scale, 1));
+  object-fit: contain;
+  display: block;
+}
 .wl .app-info { flex: 1; min-width: 0; }
 .wl .app-name {
   font-size: 13px; font-weight: 700; color: var(--wl-w55);
@@ -376,9 +382,10 @@
 .wl .ph-vote-hd { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.85); }
 .wl .ph-vote-sub { font-size: 9px; color: rgba(255,255,255,0.3); margin-top: 2px; }
 .wl .ph-card { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
-.wl .ph-card-img { flex: 1; background: linear-gradient(150deg, #130f2a, #0a081c, #12102a); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; min-height: 120px; }
+.wl .ph-card-img { flex: 1; background: linear-gradient(150deg, #130f2a, #0a081c, #12102a); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; min-height: 120px; position: relative; overflow: hidden; }
 .wl .ph-card-img svg { width: 32px; height: 32px; stroke: rgba(165,180,252,0.4); fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
-.wl .ph-card-caption { font-size: 9px; color: rgba(255,255,255,0.18); }
+.wl .ph-card-photo { width: 100%; height: 100%; min-height: 120px; object-fit: cover; }
+.wl .ph-card-caption { font-size: 9px; color: rgba(255,255,255,0.7); position: absolute; left: 8px; bottom: 8px; background: rgba(0,0,0,0.45); padding: 2px 6px; border-radius: 999px; }
 .wl .ph-card-meta { padding: 8px 10px; display: flex; align-items: center; gap: 7px; }
 .wl .ph-meta-av { width: 20px; height: 20px; border-radius: 50%; background: #4c1d95; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; color: #fff; }
 .wl .ph-meta-name { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.7); }
@@ -409,10 +416,33 @@
   padding: 80px 20px 96px;
   display: flex; flex-direction: column; align-items: center; text-align: center;
 }
-.wl .cta-logo {
-  width: 72px; height: 72px; object-fit: cover; mix-blend-mode: screen;
-  margin-bottom: 28px; filter: drop-shadow(0 0 24px rgba(99,102,241,0.4));
+.wl .cta-logo-shell {
+  width: 92px; height: 92px; border-radius: 24px;
+  display: grid; place-items: center;
+  margin-bottom: 28px;
+  background: radial-gradient(circle at 30% 25%, rgba(99,102,241,0.4), rgba(30,27,75,0.9) 60%, rgba(10,10,18,0.95));
+  border: 1px solid rgba(199,210,254,0.65);
+  box-shadow:
+    0 16px 44px rgba(99,102,241,0.5),
+    0 0 0 2px rgba(99,102,241,0.16),
+    inset 0 0 0 1px rgba(255,255,255,0.14);
+  position: relative;
+  isolation: isolate;
   animation: wl-bob 4s ease-in-out infinite;
+}
+.wl .cta-logo-shell::before {
+  content: '';
+  position: absolute;
+  inset: -26px;
+  border-radius: 34px;
+  background: radial-gradient(circle, rgba(99,102,241,0.5) 0%, rgba(99,102,241,0.16) 42%, rgba(99,102,241,0) 72%);
+  filter: blur(10px);
+  z-index: -1;
+  animation: wl-orbit-glow 2.6s ease-in-out infinite;
+}
+.wl .cta-logo {
+  width: 62px; height: 62px; object-fit: contain;
+  filter: drop-shadow(0 2px 12px rgba(0,0,0,0.7));
 }
 .wl .cta-hed {
   font-size: clamp(32px, 8vw, 68px); font-weight: 800;
