@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react'; // useRef kept for spb/glow refs
 import { collection, addDoc, serverTimestamp, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import './WaitlistPage.css';
@@ -36,18 +36,11 @@ function EmailForm({ id }) {
   const [loading, setLoading]   = useState(false);
   const [success, setSuccess]   = useState(false);
   const [shake, setShake]       = useState(false);
-  const timerRef = useRef(null);
 
   const handleChange = (e) => {
-    const val = e.target.value;
-    setEmail(val);
-    clearTimeout(timerRef.current);
-    if (!val) { setResult(null); return; }
-    timerRef.current = setTimeout(() => setResult(validate(val)), 400);
-  };
-
-  const handleBlur = () => {
-    if (email) setResult(validate(email));
+    setEmail(e.target.value);
+    // Clear error as soon as they start correcting
+    if (result && !result.ok) setResult(null);
   };
 
   const handleSubmit = useCallback(async () => {
@@ -113,7 +106,6 @@ function EmailForm({ id }) {
           autoComplete="email"
           aria-label="Email address"
           onChange={handleChange}
-          onBlur={handleBlur}
           onKeyDown={handleKeyDown}
         />
         {result && (
