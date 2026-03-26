@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { collection, addDoc, serverTimestamp, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 import './WaitlistPage.css';
 
 /* ── Email validation ── */
@@ -48,7 +50,7 @@ function EmailForm({ id }) {
     if (email) setResult(validate(email));
   };
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     const res = validate(email);
     setResult(res);
     if (!res.ok) {
@@ -57,12 +59,30 @@ function EmailForm({ id }) {
       return;
     }
     setLoading(true);
-    // TODO: replace with Firestore write once Firebase is connected
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const normalised = email.trim().toLowerCase();
+
+      // Deduplicate — skip silently if already signed up
+      const existing = await getDocs(
+        query(collection(db, 'waitlist'), where('email', '==', normalised))
+      );
+
+      if (existing.empty) {
+        await addDoc(collection(db, 'waitlist'), {
+          email:     normalised,
+          source:    id,           // 'hero' or 'cta'
+          createdAt: serverTimestamp(),
+        });
+      }
+
       setSuccess(true);
-    }, 800);
-  }, [email]);
+    } catch (err) {
+      console.error('Waitlist write failed:', err);
+      setResult({ ok: false, msg: 'Something went wrong — please try again.' });
+    } finally {
+      setLoading(false);
+    }
+  }, [email, id]);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') handleSubmit();
