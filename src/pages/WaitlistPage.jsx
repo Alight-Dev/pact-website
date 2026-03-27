@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react'; // useRef kept for spb/glow refs
-import { collection, addDoc, serverTimestamp, query, where, getDocs } from 'firebase/firestore';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import './WaitlistPage.css';
 
@@ -55,18 +55,12 @@ function EmailForm({ id }) {
     try {
       const normalised = email.trim().toLowerCase();
 
-      // Deduplicate — skip silently if already signed up
-      const existing = await getDocs(
-        query(collection(db, 'waitlist'), where('email', '==', normalised))
-      );
-
-      if (existing.empty) {
-        await addDoc(collection(db, 'waitlist'), {
-          email:     normalised,
-          source:    id,           // 'hero' or 'cta'
-          createdAt: serverTimestamp(),
-        });
-      }
+      // Use email as doc ID — naturally deduplicates with no read required
+      await setDoc(doc(db, 'waitlist', normalised), {
+        email:     normalised,
+        source:    id,
+        createdAt: serverTimestamp(),
+      });
 
       setSuccess(true);
     } catch (err) {
