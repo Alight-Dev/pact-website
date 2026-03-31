@@ -119,42 +119,6 @@ export default function SwipeRevealPage() {
     }, 600);
   }, []);
 
-  /* Alternative unlock: users can scroll down to trigger reveal */
-  useEffect(() => {
-    if (phase !== 'swiping') return;
-
-    let scrollIntent = 0;
-    let touchStartY = 0;
-    const unlockThreshold = 140;
-
-    const tryUnlock = (deltaY) => {
-      if (deltaY <= 0) return;
-      scrollIntent = Math.min(scrollIntent + deltaY, unlockThreshold + 40);
-      if (scrollIntent >= unlockThreshold) {
-        handleComplete();
-      }
-    };
-
-    const onWheel = (e) => tryUnlock(e.deltaY);
-    const onTouchStart = (e) => {
-      touchStartY = e.touches[0]?.clientY ?? 0;
-    };
-    const onTouchMove = (e) => {
-      const y = e.touches[0]?.clientY ?? touchStartY;
-      const delta = touchStartY - y;
-      tryUnlock(delta);
-    };
-
-    window.addEventListener('wheel', onWheel, { passive: true });
-    window.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('touchmove', onTouchMove, { passive: true });
-    return () => {
-      window.removeEventListener('wheel', onWheel);
-      window.removeEventListener('touchstart', onTouchStart);
-      window.removeEventListener('touchmove', onTouchMove);
-    };
-  }, [phase, handleComplete]);
-
   return (
     <div className="sr" ref={pageRef}>
       {/* Background glows */}
