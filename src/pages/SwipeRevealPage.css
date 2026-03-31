@@ -135,9 +135,9 @@
 }
 
 /* ════════════════════════════════
-   STAGE — layered container
+   HERO — full viewport section
    ════════════════════════════════ */
-.sr-stage {
+.sr-hero {
   position: relative;
   min-height: 100dvh;
   z-index: 1;
@@ -154,8 +154,8 @@
   align-items: center;
   justify-content: center;
   padding-top: 60px;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  /* Semi-opaque backdrop so the reveal peeks through around edges */
+  touch-action: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
   background: radial-gradient(ellipse at center, rgba(8, 8, 15, 0.92) 0%, rgba(8, 8, 15, 0.98) 60%, rgba(8, 8, 15, 1) 100%);
 }
 
@@ -163,6 +163,7 @@
   opacity: 0;
   transform: scale(0.92);
   pointer-events: none;
+  touch-action: auto;
 }
 
 /* ── Stack container ── */
