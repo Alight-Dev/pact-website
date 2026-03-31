@@ -61,6 +61,51 @@ export default function SwipeRevealPage() {
     return () => obs.disconnect();
   }, [showContent]);
 
+  /* Scroll-driven page polish: progress + parallax intensity */
+  useEffect(() => {
+    const root = pageRef.current;
+    if (!root) return;
+
+    const onScroll = () => {
+      const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      const progress = Math.min(window.scrollY / max, 1);
+      const heroProgress = Math.min(window.scrollY / (window.innerHeight * 1.25), 1);
+      root.style.setProperty('--sr-scroll-progress', progress.toFixed(4));
+      root.style.setProperty('--sr-hero-progress', heroProgress.toFixed(4));
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
+
+  /* Staggered section entrances for below-fold blocks */
+  useEffect(() => {
+    if (!showContent) return;
+    const root = pageRef.current;
+    if (!root) return;
+
+    const blocks = root.querySelectorAll('.sr-below-block');
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18, rootMargin: '0px 0px -8% 0px' }
+    );
+
+    blocks.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [showContent]);
+
   const handleComplete = useCallback(() => {
     setPhase('transitioning');
     setTimeout(() => {
@@ -88,6 +133,7 @@ export default function SwipeRevealPage() {
           </a>
           <span className="sr-nav__pill">iOS · Coming Soon</span>
         </div>
+        <div className="sr-scroll-progress" aria-hidden="true" />
       </nav>
 
       {/* ── Layered container: reveal BEHIND, cards ON TOP ── */}
@@ -149,9 +195,15 @@ export default function SwipeRevealPage() {
       {/* Below-fold content (after reveal) */}
       {showContent && (
         <div className="sr-below">
-          <HowItWorks />
-          <Contact />
-          <Footer />
+          <div className="sr-below-block sr-below-block--1">
+            <HowItWorks />
+          </div>
+          <div className="sr-below-block sr-below-block--2">
+            <Contact />
+          </div>
+          <div className="sr-below-block sr-below-block--3">
+            <Footer />
+          </div>
         </div>
       )}
     </div>
