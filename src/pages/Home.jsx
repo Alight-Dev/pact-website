@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import HowItWorks from '../components/HowItWorks'
-import ShieldTiers from '../components/ShieldTiers'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 
@@ -24,7 +23,6 @@ export default function Home() {
       <main>
         <Hero />
         <HowItWorks />
-        <ShieldTiers />
         <Contact />
       </main>
       <Footer />

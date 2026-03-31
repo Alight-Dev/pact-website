@@ -148,7 +148,7 @@ export default function TermsPage() {
       <h2>14. Contact</h2>
       <p>
         Questions about these Terms:{' '}
-        <a href="mailto:yawsnr33@gmail.com">yawsnr33@gmail.com</a>
+        <a href="mailto:alightpact@gmail.com">alightpact@gmail.com</a>
       </p>
     </LegalLayout>
   )

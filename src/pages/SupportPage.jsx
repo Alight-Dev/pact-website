@@ -13,7 +13,7 @@ export default function SupportPage() {
       <h2>How to reach us</h2>
       <ul>
         <li>
-          Email: <a href="mailto:yawsnr33@gmail.com">yawsnr33@gmail.com</a>
+          Email: <a href="mailto:alightpact@gmail.com">alightpact@gmail.com</a>
         </li>
       </ul>
 

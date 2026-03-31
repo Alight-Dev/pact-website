@@ -13,7 +13,7 @@ export default function Footer() {
           <li><Link to="/privacy">Privacy</Link></li>
           <li><Link to="/support">Support</Link></li>
           <li><Link to="/marketing">Marketing</Link></li>
-          <li><a href="mailto:yawsnr33@gmail.com">Contact</a></li>
+          <li><a href="mailto:alightpact@gmail.com">Contact</a></li>
         </ul>
       </div>
     </footer>

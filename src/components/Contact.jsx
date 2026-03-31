@@ -25,11 +25,11 @@ export default function Contact() {
           reach us directly. We respond to every message.
         </p>
         <a
-          href="mailto:yawsnr33@gmail.com"
+          href="mailto:alightpact@gmail.com"
           className="contact__link reveal reveal-delay-3"
         >
           <span className="contact__link-icon">✉️</span>
-          yawsnr33@gmail.com
+          alightpact@gmail.com
         </a>
       </div>
     </section>

@@ -177,7 +177,7 @@ export default function PrivacyPolicyPage() {
       <h2>12. Contact us</h2>
       <p>
         Privacy questions or requests:{' '}
-        <a href="mailto:yawsnr33@gmail.com">yawsnr33@gmail.com</a>
+        <a href="mailto:alightpact@gmail.com">alightpact@gmail.com</a>
       </p>
     </LegalLayout>
   )
