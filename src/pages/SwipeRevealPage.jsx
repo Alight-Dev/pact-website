@@ -20,6 +20,7 @@ export default function SwipeRevealPage() {
   const [phase, setPhase] = useState('swiping'); // 'swiping' | 'transitioning' | 'revealed'
   const [showContent, setShowContent] = useState(false);
   const pageRef = useRef(null);
+  const hasCompletedRef = useRef(false);
 
   /* Body styles while mounted */
   useEffect(() => {
@@ -55,7 +56,7 @@ export default function SwipeRevealPage() {
     if (!els) return;
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.target.classList.toggle('visible', e.isIntersecting)),
-      { threshold: 0.1 }
+      { threshold: 0.04, rootMargin: '0px 0px -6% 0px' }
     );
     els.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
@@ -99,7 +100,7 @@ export default function SwipeRevealPage() {
           }
         });
       },
-      { threshold: 0.18, rootMargin: '0px 0px -8% 0px' }
+      { threshold: 0.08, rootMargin: '0px 0px -2% 0px' }
     );
 
     blocks.forEach((el) => obs.observe(el));
@@ -107,14 +108,52 @@ export default function SwipeRevealPage() {
   }, [showContent]);
 
   const handleComplete = useCallback(() => {
+    if (hasCompletedRef.current) return;
+    hasCompletedRef.current = true;
     setPhase('transitioning');
     setTimeout(() => {
       setPhase('revealed');
       setTimeout(() => {
         setShowContent(true);
-      }, 1800);
+      }, 900);
     }, 600);
   }, []);
+
+  /* Alternative unlock: users can scroll down to trigger reveal */
+  useEffect(() => {
+    if (phase !== 'swiping') return;
+
+    let scrollIntent = 0;
+    let touchStartY = 0;
+    const unlockThreshold = 140;
+
+    const tryUnlock = (deltaY) => {
+      if (deltaY <= 0) return;
+      scrollIntent = Math.min(scrollIntent + deltaY, unlockThreshold + 40);
+      if (scrollIntent >= unlockThreshold) {
+        handleComplete();
+      }
+    };
+
+    const onWheel = (e) => tryUnlock(e.deltaY);
+    const onTouchStart = (e) => {
+      touchStartY = e.touches[0]?.clientY ?? 0;
+    };
+    const onTouchMove = (e) => {
+      const y = e.touches[0]?.clientY ?? touchStartY;
+      const delta = touchStartY - y;
+      tryUnlock(delta);
+    };
+
+    window.addEventListener('wheel', onWheel, { passive: true });
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    return () => {
+      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+    };
+  }, [phase, handleComplete]);
 
   return (
     <div className="sr" ref={pageRef}>
