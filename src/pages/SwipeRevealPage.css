@@ -187,13 +187,39 @@
   letter-spacing: 0.04em;
   color: #fff;
   margin: 0 0 6px;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.2),
+    0 0 26px rgba(165, 180, 252, 0.3);
+  animation: ss-inst-glow 2.8s ease-in-out infinite, ss-inst-bounce 6s ease-in-out infinite;
 }
 
 .ss-inst-sub {
   font-size: 0.85rem;
-  color: var(--sr-w55);
+  color: rgba(255, 255, 255, 0.62);
   margin: 0;
   letter-spacing: 0.02em;
+}
+
+@keyframes ss-inst-glow {
+  0%, 100% {
+    text-shadow:
+      0 0 10px rgba(255, 255, 255, 0.2),
+      0 0 26px rgba(165, 180, 252, 0.3);
+  }
+  50% {
+    text-shadow:
+      0 0 16px rgba(255, 255, 255, 0.3),
+      0 0 36px rgba(165, 180, 252, 0.45),
+      0 0 52px rgba(99, 102, 241, 0.36);
+  }
+}
+
+@keyframes ss-inst-bounce {
+  0%, 100% { transform: translateY(0); }
+  18% { transform: translateY(-4px); }
+  34% { transform: translateY(0); }
+  48% { transform: translateY(-2px); }
+  62% { transform: translateY(0); }
 }
 
 /* ── Card stack ── */
@@ -627,15 +653,27 @@
   line-height: 1.05;
   color: #fff;
   margin: 0 0 12px;
+  text-shadow:
+    0 0 14px rgba(255, 255, 255, 0.24),
+    0 0 28px rgba(165, 180, 252, 0.26);
 }
 
 .sr-reveal__title span {
   color: var(--sr-violet-soft);
-  text-shadow: 0 0 40px var(--sr-violet-glow);
+  text-shadow:
+    0 0 26px rgba(165, 180, 252, 0.85),
+    0 0 58px rgba(99, 102, 241, 0.65);
 }
 
 .sr-reveal--active .sr-reveal__title {
-  animation: sr-text-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+  animation:
+    sr-text-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards,
+    sr-title-bounce 6s ease-in-out 1.0s infinite,
+    sr-title-glow 2.8s ease-in-out 1.0s infinite;
+}
+
+.sr-reveal--active .sr-reveal__title span {
+  animation: sr-title-span-pulse 2.8s ease-in-out 1.0s infinite;
 }
 
 /* ── Subtitle ── */
@@ -654,6 +692,41 @@
 @keyframes sr-text-up {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sr-title-bounce {
+  0%, 100% { transform: translateY(0); }
+  20% { transform: translateY(-7px); }
+  36% { transform: translateY(0); }
+  48% { transform: translateY(-3px); }
+  60% { transform: translateY(0); }
+}
+
+@keyframes sr-title-glow {
+  0%, 100% {
+    text-shadow:
+      0 0 14px rgba(255, 255, 255, 0.24),
+      0 0 28px rgba(165, 180, 252, 0.26);
+  }
+  50% {
+    text-shadow:
+      0 0 20px rgba(255, 255, 255, 0.34),
+      0 0 38px rgba(165, 180, 252, 0.44),
+      0 0 60px rgba(99, 102, 241, 0.35);
+  }
+}
+
+@keyframes sr-title-span-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 26px rgba(165, 180, 252, 0.85),
+      0 0 58px rgba(99, 102, 241, 0.65);
+  }
+  50% {
+    text-shadow:
+      0 0 34px rgba(191, 203, 255, 0.98),
+      0 0 72px rgba(99, 102, 241, 0.82);
+  }
 }
 
 /* ── Group tag ── */

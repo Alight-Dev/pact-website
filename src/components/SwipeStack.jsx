@@ -39,7 +39,7 @@ export default function SwipeStack({ onComplete }) {
     <div className="ss-container">
       {/* Instruction */}
       <div className="ss-instruction">
-        <p className="ss-inst-text">Would you do it?</p>
+        <p className="ss-inst-text">Earn Your Unlock</p>
         <p className="ss-inst-sub">Swipe right to approve, left to reject</p>
       </div>
 
