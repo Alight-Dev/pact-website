@@ -11,15 +11,19 @@ export default function SwipeStack({ onComplete }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [interactions, setInteractions] = useState(0);
   const stackRef = useRef(null);
+  const hasCompletedRef = useRef(false);
 
-  const handleSwipe = useCallback((direction) => {
-    const next = interactions + 1;
-    setInteractions(next);
+  const handleSwipe = useCallback(() => {
+    setInteractions((prev) => {
+      const next = prev + 1;
+      if (next >= ACTIVITIES.length && !hasCompletedRef.current) {
+        hasCompletedRef.current = true;
+        setTimeout(() => onComplete(), 300);
+      }
+      return next;
+    });
     setCurrentIndex((prev) => prev + 1);
-    if (next >= 3) {
-      setTimeout(() => onComplete(), 300);
-    }
-  }, [interactions, onComplete]);
+  }, [onComplete]);
 
   const triggerButtonSwipe = useCallback((dir) => {
     const stack = stackRef.current;
@@ -40,7 +44,7 @@ export default function SwipeStack({ onComplete }) {
       {/* Instruction */}
       <div className="ss-instruction">
         <p className="ss-inst-text">Earn Your Unlock</p>
-        <p className="ss-inst-sub">Swipe right to approve, left to reject</p>
+        <p className="ss-inst-sub">Use the buttons to approve or reject</p>
       </div>
 
       {/* Card stack */}
@@ -56,6 +60,7 @@ export default function SwipeStack({ onComplete }) {
               key={`${activity.title}-${currentIndex + i}`}
               activity={activity}
               isTop={i === 0}
+              allowDrag={false}
               onSwipe={handleSwipe}
               style={{
                 '--stack-scale': scale,

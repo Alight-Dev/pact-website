@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import SwipeStack from '../components/SwipeStack';
 import EmailForm from '../components/EmailForm';
 import HowItWorks from '../components/HowItWorks';
@@ -83,15 +83,15 @@ export default function SwipeRevealPage() {
     return () => obs.disconnect();
   }, []);
 
-  const handleComplete = useCallback(() => {
+  const handleComplete = () => {
     if (hasCompletedRef.current) return;
     hasCompletedRef.current = true;
     setPhase('transitioning');
     setTimeout(() => {
       setPhase('revealed');
-      setTimeout(() => setRevealed(true), 400);
-    }, 500);
-  }, []);
+      setRevealed(true);
+    }, 450);
+  };
 
   return (
     <div className="sr" ref={pageRef}>
@@ -152,10 +152,10 @@ export default function SwipeRevealPage() {
           </div>
         </div>
 
-        {/* Swipe overlay */}
         <div className={`sr-swipe-phase${phase !== 'swiping' ? ' sr-swipe-phase--exit' : ''}`}>
           <SwipeStack onComplete={handleComplete} />
         </div>
+
       </section>
 
       {/* Below-fold — always in DOM, always scrollable */}

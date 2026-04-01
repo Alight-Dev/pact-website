@@ -154,7 +154,7 @@
   align-items: center;
   justify-content: center;
   padding-top: 60px;
-  touch-action: none;
+  touch-action: pan-y;
   transition: opacity 0.5s ease, transform 0.5s ease;
   background: radial-gradient(ellipse at center, rgba(8, 8, 15, 0.92) 0%, rgba(8, 8, 15, 0.98) 60%, rgba(8, 8, 15, 1) 100%);
 }
@@ -239,7 +239,7 @@
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--sr-w10);
   overflow: hidden;
-  touch-action: none;
+  touch-action: pan-y;
   user-select: none;
   will-change: transform;
   cursor: default;
@@ -959,6 +959,32 @@
 /* ════════════════════════════════
    RESPONSIVE
    ════════════════════════════════ */
+@media (max-width: 768px) {
+  /* iPhone/Safari can render heavy blur stacks as grainy.
+     Tone effects down on mobile for cleaner text/background. */
+  .sr-glow {
+    filter: blur(60px);
+    opacity: 0.6;
+  }
+
+  .sr-reveal__glow,
+  .sr-reveal__particles {
+    display: none;
+  }
+
+  .sr-reveal__title {
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 0.16),
+      0 0 16px rgba(165, 180, 252, 0.18);
+  }
+
+  .sr-reveal__title span {
+    text-shadow:
+      0 0 10px rgba(165, 180, 252, 0.45),
+      0 0 24px rgba(99, 102, 241, 0.34);
+  }
+}
+
 @media (max-width: 480px) {
   .ss-stack {
     width: min(290px, 85vw);

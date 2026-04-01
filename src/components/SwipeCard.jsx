@@ -1,17 +1,17 @@
 import { useRef, useCallback } from 'react';
 
-export default function SwipeCard({ activity, onSwipe, isTop, style }) {
+export default function SwipeCard({ activity, onSwipe, isTop, style, allowDrag = true }) {
   const cardRef = useRef(null);
   const dragState = useRef({ active: false, startX: 0, startY: 0, dx: 0 });
 
   const onPointerDown = useCallback((e) => {
-    if (!isTop) return;
+    if (!isTop || !allowDrag) return;
     const el = cardRef.current;
     if (!el) return;
     el.setPointerCapture(e.pointerId);
     el.style.transition = 'none';
     dragState.current = { active: true, startX: e.clientX, startY: e.clientY, dx: 0 };
-  }, [isTop]);
+  }, [isTop, allowDrag]);
 
   const onPointerMove = useCallback((e) => {
     if (!dragState.current.active) return;
@@ -76,11 +76,11 @@ export default function SwipeCard({ activity, onSwipe, isTop, style }) {
   return (
     <div
       ref={cardRef}
-      className={`sc-card${isTop ? ' sc-card--active' : ''}`}
+      className={`sc-card${isTop && allowDrag ? ' sc-card--active' : ''}`}
       style={style}
-      onPointerDown={isTop ? onPointerDown : undefined}
-      onPointerMove={isTop ? onPointerMove : undefined}
-      onPointerUp={isTop ? onPointerUp : undefined}
+      onPointerDown={isTop && allowDrag ? onPointerDown : undefined}
+      onPointerMove={isTop && allowDrag ? onPointerMove : undefined}
+      onPointerUp={isTop && allowDrag ? onPointerUp : undefined}
       data-trigger-swipe={isTop ? 'true' : undefined}
       // expose trigger function via ref callback
       {...(isTop ? { 'data-card-top': 'true' } : {})}
